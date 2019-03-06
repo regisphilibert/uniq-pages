@@ -1,0 +1,28 @@
+<body>
+	{{ $pages := slice }}
+	{{ with .Site.GetPage "/page-1" }}
+		{{ $pages = $pages | append . }}
+	{{ end }}
+	{{ with .Site.GetPage "/page-2" }}
+		{{ $pages = $pages | append . }}
+	{{ end }}
+	{{ with .Site.GetPage "/page-3" }}
+		{{ $pages = $pages | append . }}
+	{{ end }}
+	{{ with .Site.GetPage "/page-3" }}
+		{{ $pages = $pages | append . }}
+	{{ end }}
+
+	<ul>
+	{{ range $pages }}
+		<li>{{ .Title }}</li>
+	{{ end }}
+	</ul>
+	<hr>
+
+	<ul>
+	{{ range uniq $pages }}
+		<li>{{ .Title }}</li>
+	{{ end }}
+	</ul>
+</body>
